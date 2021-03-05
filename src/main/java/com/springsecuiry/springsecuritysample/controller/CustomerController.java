@@ -2,6 +2,7 @@ package com.springsecuiry.springsecuritysample.controller;
 
 import com.springsecuiry.springsecuritysample.model.AuthenticationRequest;
 import com.springsecuiry.springsecuritysample.model.AuthenticationResponse;
+import com.springsecuiry.springsecuritysample.model.CommonMsg;
 import com.springsecuiry.springsecuritysample.model.SignUpRequest;
 import com.springsecuiry.springsecuritysample.model.entitiy.Customer;
 import com.springsecuiry.springsecuritysample.service.CustomerService;
@@ -49,14 +50,13 @@ public class CustomerController {
             message = "User already exist";
         }
 
-        return ResponseEntity.ok(message);
+        return ResponseEntity.ok(new CommonMsg(message));
     }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest request) throws Exception {
         try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         }catch (BadCredentialsException e){
             throw new Exception("Incorrect user name or pass",e);
         }

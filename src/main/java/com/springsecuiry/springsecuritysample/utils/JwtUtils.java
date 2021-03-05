@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Service
 public class JwtUtils {
-    private String SECRET_KEY = "secret";
+    private final String SECRET_KEY = "secret";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
