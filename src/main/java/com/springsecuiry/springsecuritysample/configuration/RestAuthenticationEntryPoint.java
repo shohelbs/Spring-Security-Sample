@@ -22,5 +22,5 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(out, response);
         out.flush();
-    }git
+    }
 }
