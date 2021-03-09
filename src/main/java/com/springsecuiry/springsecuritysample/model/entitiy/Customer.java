@@ -1,5 +1,6 @@
 package com.springsecuiry.springsecuritysample.model.entitiy;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -8,10 +9,12 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(name = "name")
     private String customerName;
     private String username;
     private String password;
-    private String email;
+    private String phone;
+    private String nid;
 
     public long getId() {
         return id;
@@ -45,11 +48,19 @@ public class Customer {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getNid() {
+        return nid;
+    }
+
+    public void setNid(String nid) {
+        this.nid = nid;
     }
 }

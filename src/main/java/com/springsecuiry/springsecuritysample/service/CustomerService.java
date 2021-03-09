@@ -26,7 +26,7 @@ public class CustomerService {
         customer.setCustomerName(request.getCustomerName());
         customer.setUsername(request.getUsername());
         customer.setPassword(request.getPassword());
-        customer.setEmail(request.getEmail());
+//        customer.setEmail(request.getEmail());
         return customer;
     }
 }

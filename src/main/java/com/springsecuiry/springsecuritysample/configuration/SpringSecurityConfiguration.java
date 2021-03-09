@@ -35,7 +35,10 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/authenticate","/signup")
                 .permitAll()
                 .anyRequest()
-                .authenticated().and().sessionManagement()
+                .authenticated().and().exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler())
+                .authenticationEntryPoint(authenticationEntryPoint())
+                .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
        // ====== Add Filter for Jwt Token Validation =============
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
@@ -50,5 +53,15 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder getPasswordEncoder(){
         return NoOpPasswordEncoder.getInstance();
+    }
+
+    @Bean
+    RestAccessDeniedHandler accessDeniedHandler() {
+        return new RestAccessDeniedHandler();
+    }
+
+    @Bean
+    RestAuthenticationEntryPoint authenticationEntryPoint() {
+        return new RestAuthenticationEntryPoint();
     }
 }
